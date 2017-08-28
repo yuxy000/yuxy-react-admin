@@ -17,9 +17,6 @@ class SiderCustom extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('====================================');
-        console.log(nextProps, 11111111111111);
-        console.log('====================================');
         this.onCollapse(nextProps.collapsed);
         this.setMenuOpen(nextProps);
     }
