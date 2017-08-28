@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import App from '../App';
-import Page from '../components/Page';
+import Login from '../components/login';
 
 class CRouter extends Component {
     requireAuth = (permission, component) => {
@@ -17,9 +17,10 @@ class CRouter extends Component {
     render() {
         return (
             <Router>
-                <div>
-                    <Route path="/" component={Page} />
-                    <Route path="/app" component={App} />
+                <div className="h-v">
+                    <Route path="/" component={App} />
+                    <Route path="/login" component={Login} />
+                    
                 </div>
                 
             </Router>

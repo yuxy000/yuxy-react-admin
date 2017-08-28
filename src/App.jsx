@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Layout } from 'antd';
 
-import {receiveData} from './actions'
+import {receiveData} from './actions';
+
+import './styles/index.scss';
+
+import HeaderCustom from './Containers/HeaderCustom';
+import SiderCustom from './Containers/SiderCustom';
+import ContentCustom from './Containers/ContentCustom';
+const { Footer } = Layout;
+
+
+
+
 class App extends Component {
 
   state = {
@@ -14,6 +26,13 @@ class App extends Component {
     const user = JSON.parse(localStorage.getItem('user'));
     user && receiveData(user, 'auth');
   }
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
   render() {
 
     console.log('====================================');
@@ -23,10 +42,16 @@ class App extends Component {
     const { auth, router } = this.props;
 
     return (
-      <div className="App">
-        
-          To get started, edit <code>src/App.js</code> and save to reload.
-      </div>
+      <Layout className="ant-layout-has-sider">
+        <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed}/>
+        <Layout>
+          <HeaderCustom toggle={this.toggle} user={auth.data || {}} />
+          <ContentCustom />
+          <Footer style={{ textAlign: 'center' }}>
+            Yuxy-React-Admin &copy;2017 Created by yuxy
+          </Footer>
+        </Layout>
+      </Layout>
     );
   }
 }
