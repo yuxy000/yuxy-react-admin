@@ -82,6 +82,11 @@ class SiderCustom extends Component {
                     <SubMenu key="/app/ui" title={<span><Icon type="scan" /><span className="mav-text">UI</span></span>} >
                         <Menu.Item key="/app/ui/buttons"><Link to='/app/ui/buttons'>按钮</Link></Menu.Item>
                         <Menu.Item key="/app/ui/icons"><Link to='/app/ui/icons'>图标</Link></Menu.Item>
+                        <Menu.Item key="/app/ui/spins"><Link to='/app/ui/spins'>加载中</Link></Menu.Item>
+                        <Menu.Item key="/app/ui/modals"><Link to='/app/ui/modals'>对话框</Link></Menu.Item>
+                        <Menu.Item key="/app/ui/notifications"><Link to='/app/ui/notifications'>通知提醒框</Link></Menu.Item>
+                        <Menu.Item key="/app/ui/tabs"><Link to='/app/ui/tabs'>标签页</Link></Menu.Item>
+                        <Menu.Item key="/app/ui/banners"><Link to='/app/ui/banners'>轮播图</Link></Menu.Item>
                     </SubMenu>
                 </Menu>    
             </Sider>

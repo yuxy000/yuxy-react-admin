@@ -7,9 +7,9 @@ import {receiveData} from './actions';
 
 import './styles/index.scss';
 
-import HeaderCustom from './Containers/HeaderCustom';
-import SiderCustom from './Containers/SiderCustom';
-import ContentCustom from './Containers/ContentCustom';
+import HeaderCustom from './containers/HeaderCustom';
+import SiderCustom from './containers/SiderCustom';
+import ContentCustom from './containers/ContentCustom';
 const { Footer } = Layout;
 
 
@@ -35,17 +35,14 @@ class App extends Component {
 
   render() {
 
-    console.log('====================================');
-    console.log(this.props.auth);
-    console.log('====================================');
 
-    const { auth, router } = this.props;
+    const { auth, history } = this.props;
 
     return (
       <Layout className="ant-layout-has-sider">
         <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed}/>
         <Layout>
-          <HeaderCustom toggle={this.toggle} user={auth.data || {}} />
+          <HeaderCustom toggle={this.toggle} user={auth.data || {}} history={history}/>
           <ContentCustom />
           <Footer style={{ textAlign: 'center' }}>
             Yuxy-React-Admin &copy;2017 Created by yuxy

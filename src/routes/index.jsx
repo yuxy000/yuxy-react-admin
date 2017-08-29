@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import App from '../App';
-import Login from '../components/login';
+import Login from '../components/pages/Login';
 
 class CRouter extends Component {
     requireAuth = (permission, component) => {

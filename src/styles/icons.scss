@@ -1,7 +1,8 @@
-ul.icons-list{
+ul.icons-list {
   list-style: none;
   overflow: hidden;
-  li{
+  
+  li {
     float: left;
     width: 10%;
     text-align: center;
@@ -10,14 +11,17 @@ ul.icons-list{
     height: 100px;
     transition: all .3s;
     background-color: #fff;
-    &:hover{
+    
+    &:hover {
       background-color: #cccccc;
       color: #fff;
     }
-    i{
+    
+    i {
       margin: 16px 0 10px;
     }
-    span{
+
+    span {
       display: block;
       text-align: center;
     }

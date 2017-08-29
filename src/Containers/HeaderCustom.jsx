@@ -13,8 +13,17 @@ class HeaderCustom extends Component {
         user: ''
     };
 
-    menuClick() {
+    menuClick = (e) => {
+        if(e.key === 'logout') {
+            this.logout();
+        }
+    }
 
+    logout = () => {
+        console.log('====================================');
+        console.log(this.props);
+        console.log('====================================');
+        this.props.history.push('/login');
     }
 
     render() {
