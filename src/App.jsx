@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 
 import {receiveData} from './actions';
 
-import './styles/index.scss';
+import './styles/index.less';
 
 import HeaderCustom from './containers/HeaderCustom';
 import SiderCustom from './containers/SiderCustom';

@@ -138,6 +138,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
+          /\.less$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,
@@ -172,7 +173,38 @@ module.exports = {
           compact: true,
         },
       },
- 
+        // Parse less files and modify variables
+        {
+            test: /\.less$/,
+            use: [
+                require.resolve('style-loader'),
+                require.resolve('css-loader'),
+                {
+                    loader: require.resolve('postcss-loader'),
+                    options: {
+                        ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                        plugins: () => [
+                            require('postcss-flexbugs-fixes'),
+                            autoprefixer({
+                                browsers: [
+                                    '>1%',
+                                    'last 4 versions',
+                                    'Firefox ESR',
+                                    'not ie < 9', // React doesn't support IE8 anyway
+                                ],
+                                flexbox: 'no-2009',
+                            }),
+                        ],
+                    },
+                },
+                {
+                    loader: require.resolve('less-loader'),
+                    options: {
+                        modifyVars: { "@primary-color": "#404040" },
+                    },
+                },
+            ],
+        },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -226,35 +258,6 @@ module.exports = {
           )
         ),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
-      },
-      // Parse scss files
-      {
-        test: /\.scss$/,
-        use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9',
-                  ],
-                  flexbox: 'no-2009',
-                }),
-              ],
-            },
-          },
-          {
-            loader: require.resolve('sass-loader'),
-          },
-        ],
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
