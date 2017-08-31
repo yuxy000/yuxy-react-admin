@@ -56,7 +56,7 @@ class TabsCustom extends Component {
         });
 
         const panes = this.state.panes.filter(pane => pane.key !== targetKey);
-        if(lastIndex >= 0 && activeKey == targetKey) {
+        if(lastIndex >= 0 && activeKey === targetKey) {
             activeKey = panes[lastIndex].key;
         }
         this.setState({panes, activeKey});
