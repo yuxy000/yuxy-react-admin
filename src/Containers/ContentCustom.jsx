@@ -18,6 +18,8 @@ import BasicAnimations from '../components/animation/BasicAnimations';
 import ExampleAnimations from '../components/animation/ExampleAnimations';
 
 import BasicTables from '../components/tables/BasicTables';
+import AdvancedTables from '../components/tables/AdvancedTables';
+import AsynchronousTable from '../components/tables/AsynchronousTable';
 
 
 const { Content } = Layout;
@@ -40,6 +42,8 @@ class ContentCustom extends React.Component {
                     <Route path="/app/animation/basicAnimations" component={BasicAnimations} />
                     <Route path="/app/animation/exampleAnimations" component={ExampleAnimations} />
                     <Route path="/app/table/basicTable" component={BasicTables} />
+                    <Route path="/app/table/advancedTable" component={AdvancedTables} />
+                    <Route path="/app/table/asynchronousTable" component={AsynchronousTable} />
                     <Route component={Dashboard} />
                 </Switch>
                
