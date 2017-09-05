@@ -110,7 +110,7 @@ class SiderCustom extends Component {
                         title={<span><Icon type="area-chart" /><span className="nav-text">图表</span></span>}
                     >
                         <Menu.Item key="/app/chart/echarts"><Link to={'/app/chart/echarts'}>echarts</Link></Menu.Item>
-                        <Menu.Item key="/app/chart/recharts"><Link to={'/app/chart/recharts'}>recharts</Link></Menu.Item>
+                        {/*<Menu.Item key="/app/chart/recharts"><Link to={'/app/chart/recharts'}>recharts</Link></Menu.Item>*/}
                     </SubMenu>
                     <SubMenu
                         key="sub4"

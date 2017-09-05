@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, notification, Icon } from 'antd';
+import { Form, Input, Button, Icon,Checkbox } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchData, receiveData } from '../../actions';
 
 const FormItem = Form.Item;
 
-class LoginPage extends Component {
+class Login extends Component {
+
+    componentWillMount() {
+        const { receiveData } = this.props;
+        receiveData(null, 'auth');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('====================================');
+        console.log('nextProps', nextProps);
+        console.log('====================================');
+
+        const { auth: nextAuth = {} } = nextProps;
+        const { history } = this.props;
+        if (nextAuth.data && nextAuth.data.uid) {
+            localStorage.setItem('user', JSON.stringify(nextAuth.data));
+            history.push('/');
+        }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -12,60 +33,73 @@ class LoginPage extends Component {
         console.log(this.props, '**************************');
         console.log('====================================');
 
-        let n = this.props.form.getFieldsValue().username;
-        let p = this.props.form.getFieldsValue().password;
-
-        if (n === '123' && p === '123') {
-            notification.close('login');
-            this.props.history.push('/app/dashboard/index');
-        } else {
-            this.openNotificationWithIcon('info');
-        }
-    }
-    openNotificationWithIcon = (type) => {
-        return notification[type]({
-            message: '用户名&密码',
-            description: '都是：123',
-            key: 'login',
-            duration: 6,
-            icon: <Icon type='smile-circle' style={{ color: '#108ee9' }} />, 
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                const { fetchData } = this.props;
+                if (values.userName === 'admin' && values.password === 'admin') {
+                    fetchData({funcName: 'admin', stateName: 'auth'});
+                }
+                if (values.userName === 'guest' && values.password === 'guest') {
+                    fetchData({funcName: 'guest', stateName: 'auth'});
+                }
+            }
         });
-    }
+    };
 
-    componentDidMount() {
-        this.openNotificationWithIcon('info');
-    }
     render() {
         const { getFieldDecorator } = this.props.form;
 
         return (
-            <div className="login-page-wrap">
-                <div className="box">
-                    <p>Welcome to the yuxy-react-admin</p>
-                    <div className="login-wrap">
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormItem>
-                                {getFieldDecorator('username',{
-                                    rules: [{ required: true, message: '请输入用户名' }],
-                                })(
-                                    <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
-                                )}
-                            </FormItem>
-                            <FormItem>
-                                {getFieldDecorator('password', {
-                                    rules: [{required: true, message: '请输入密码'}],
-                                })(
-                                    <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />}  type="password" placeholder="Password" />
-                                )}
-                            </FormItem>
-                            <Button type="primary" htmlType="submit" className="login-btn">Login</Button>
-                        </Form>
+            <div className="login">
+                <div className="login-form">
+                    <div className="login-logo">
+                        <span>React Admin</span>
                     </div>
+
+                    <Form onSubmit={this.handleSubmit} style={{width: '100%'}}>
+                        <FormItem>
+                            {getFieldDecorator('username',{
+                                rules: [{ required: true, message: '请输入用户名' }],
+                            })(
+                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="管理员输入admin, 游客输入guest" />
+                            )}
+                        </FormItem>
+                        <FormItem>
+                            {getFieldDecorator('password', {
+                                rules: [{required: true, message: '请输入密码'}],
+                            })(
+                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />}  type="password" placeholder="管理员输入admin, 游客输入guest" />
+                            )}
+                        </FormItem>
+                        <FormItem>
+                            {getFieldDecorator('remember', {
+                                valuePropName: 'checked',
+                                initialValue: true,
+                            })(
+                                <Checkbox>记住我</Checkbox>
+                            )}
+                            <a className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</a>
+                            <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
+                                登录
+                            </Button>
+                        </FormItem>
+                    </Form>
                 </div>
             </div>
         );
     }
 }
 
-let Login = Form.create()(LoginPage);
-export default Login;
+const mapStateToProps = (state) => {
+    const { auth } = state.httpData;
+    return { auth };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchData: bindActionCreators(fetchData, dispatch),
+    receiveData: bindActionCreators(receiveData, dispatch),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));

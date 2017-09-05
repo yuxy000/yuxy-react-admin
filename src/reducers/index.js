@@ -5,6 +5,9 @@ import { combineReducers } from 'redux';
 import * as type from '../actions/type';
 
 const handleData = (state = {isFetching: true, data: {}}, action) => {
+    console.log('====================================');
+    console.log('handleData', state, action);
+    console.log('====================================');
     switch (action.type) {
         case type.REQUEST_DATA:
             return {...state, isFetching: true};
@@ -16,6 +19,9 @@ const handleData = (state = {isFetching: true, data: {}}, action) => {
 };
 
 const httpData = (state = {}, action) => {
+    console.log('====================================');
+    console.log('httpData', state, action);
+    console.log('====================================');
     switch (action.type) {
         case type.REQUEST_DATA:
         case type.RECEIVE_DATA:    

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import App from '../App';
 import Login from '../components/pages/Login';
@@ -17,11 +17,13 @@ class CRouter extends Component {
     render() {
         return (
             <Router>
-                <div className="h-v">
-                    <Route path="/" component={App} />
-                    <Route path="/login" component={Login} />
+                <Switch>
+                <Route exact path="/" component={App} />
+                <Route path="/login" component={Login} />
+                </Switch>
                     
-                </div>
+                    
+
                 
             </Router>
         );
