@@ -21,6 +21,7 @@ import BasicTables from '../components/tables/BasicTables';
 import AdvancedTables from '../components/tables/AdvancedTables';
 import AsynchronousTable from '../components/tables/AsynchronousTable';
 
+import BasicForm from '../components/forms/BasicForm';
 
 const { Content } = Layout;
 
@@ -44,6 +45,7 @@ class ContentCustom extends React.Component {
                     <Route path="/app/table/basicTable" component={BasicTables} />
                     <Route path="/app/table/advancedTable" component={AdvancedTables} />
                     <Route path="/app/table/asynchronousTable" component={AsynchronousTable} />
+                    <Route path="/app/form/basicForm" component={BasicForm} />
                     <Route component={Dashboard} />
                 </Switch>
                
