@@ -43,7 +43,7 @@ class App extends Component {
         <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed}/>
         <Layout>
           <HeaderCustom toggle={this.toggle} user={auth.data || {}} history={history}/>
-          <ContentCustom />
+          <ContentCustom {...this.props}/>
           <Footer style={{ textAlign: 'center' }}>
             Yuxy-React-Admin &copy;2017 Created by yuxy
           </Footer>

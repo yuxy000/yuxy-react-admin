@@ -19,9 +19,10 @@ class CRouter extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={App} />
                     <Route path="/login" component={Login} />
                     <Route path="/404" component={NotFound} />
+                    <Route path="/" component={App} />
+                    
                 </Switch>  
             </Router>
         );

@@ -25,9 +25,26 @@ import BasicForm from '../components/forms/BasicForm';
 
 import Echarts from '../components/charts/Echarts';
 
+import BasicAuth from '../components/auth/BasicAuth';
+import RouterEnter from '../components/auth/RouterEnter';
+
 const { Content } = Layout;
 
 class ContentCustom extends React.Component {
+
+    requireAuth = (permission, component) => {
+        console.log('====================================');
+        console.log('requireAuth', this.props);
+        console.log('====================================');
+        const { auth } = this.props;
+        
+        if(!auth || !auth.data.permissions || !auth.data.permissions.includes(permission)) {
+            this.props.history.replace('/404');
+        }
+
+        return component;
+    }
+
     render() {
         return (
             <Content style={{ margin: '0 16px', overflow: 'initial' }}>
@@ -49,6 +66,8 @@ class ContentCustom extends React.Component {
                     <Route path="/app/table/asynchronousTable" component={AsynchronousTable} />
                     <Route path="/app/form/basicForm" component={BasicForm} />
                     <Route path="/app/chart/echarts" component={Echarts} />
+                    <Route path="/app/auth/basic" component={BasicAuth} />
+                    <Route path="/app/auth/routerEnter" component={() => this.requireAuth('auth/testPage', <RouterEnter />)} />
                     <Route component={Dashboard} />
                 </Switch>
                
