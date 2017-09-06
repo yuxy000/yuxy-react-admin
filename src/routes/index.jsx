@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import App from '../App';
 import Login from '../components/pages/Login';
+import NotFound from '../components/pages/NoFound';
 
 class CRouter extends Component {
     requireAuth = (permission, component) => {
@@ -18,13 +19,10 @@ class CRouter extends Component {
         return (
             <Router>
                 <Switch>
-                <Route exact path="/" component={App} />
-                <Route path="/login" component={Login} />
-                </Switch>
-                    
-                    
-
-                
+                    <Route exact path="/" component={App} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/404" component={NotFound} />
+                </Switch>  
             </Router>
         );
 

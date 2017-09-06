@@ -59,7 +59,7 @@ class Login extends Component {
 
                     <Form onSubmit={this.handleSubmit} style={{width: '100%'}}>
                         <FormItem>
-                            {getFieldDecorator('username',{
+                            {getFieldDecorator('userName',{
                                 rules: [{ required: true, message: '请输入用户名' }],
                             })(
                                 <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="管理员输入admin, 游客输入guest" />

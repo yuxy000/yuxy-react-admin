@@ -18,7 +18,7 @@ import registerServiceWorker from './registerServiceWorker';
 const middleware = [thunk];
 const store = createStore(reducer, applyMiddleware(...middleware));
 console.log('====================================');
-console.log(store.getState());
+console.log('store.getState()',store.getState());
 console.log('====================================');
 
 ReactDOM.render(
