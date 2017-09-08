@@ -34,7 +34,7 @@ class Spins extends React.Component {
                 <BreadcrumbCustom first="UI" second="加载中" />
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Spin />
@@ -42,7 +42,7 @@ class Spins extends React.Component {
                         </div>
                     </Col>
 
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Spin size="small"/>
@@ -54,7 +54,7 @@ class Spins extends React.Component {
                 </Row>
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Spin tip="Loading...">
@@ -68,7 +68,7 @@ class Spins extends React.Component {
                         </div>
                     </Col>
 
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Spin spinning={this.state.loading}>
@@ -79,7 +79,7 @@ class Spins extends React.Component {
                         </div>
                     </Col>
 
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <h4>顶部进度条</h4>

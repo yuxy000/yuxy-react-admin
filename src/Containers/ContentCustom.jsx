@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import Dashboard from '../components/dashboard/Dashboard';
@@ -20,6 +20,7 @@ import ExampleAnimations from '../components/animation/ExampleAnimations';
 import BasicTables from '../components/tables/BasicTables';
 import AdvancedTables from '../components/tables/AdvancedTables';
 import AsynchronousTable from '../components/tables/AsynchronousTable';
+import SongTable from '../components/tables/SongTable';
 
 import BasicForm from '../components/forms/BasicForm';
 
@@ -64,6 +65,7 @@ class ContentCustom extends React.Component {
                     <Route path="/app/table/basicTable" component={BasicTables} />
                     <Route path="/app/table/advancedTable" component={AdvancedTables} />
                     <Route path="/app/table/asynchronousTable" component={AsynchronousTable} />
+                    <Route path="/app/table/songTable" component={SongTable} />
                     <Route path="/app/form/basicForm" component={BasicForm} />
                     <Route path="/app/chart/echarts" component={Echarts} />
                     <Route path="/app/auth/basic" component={BasicAuth} />

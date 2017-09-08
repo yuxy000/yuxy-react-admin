@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Layout, Badge } from 'antd';
+import { Menu, Icon, Layout, Badge, Popover } from 'antd';
+import { connect } from 'react-redux';
 
+import { queryString } from '../utils';
 import { gitOauthToken, gitOauthInfo } from '../axios';
 import avatar from '../styles/imgs/b1.jpg';
+
+import SiderCustom from '../containers/SiderCustom';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -10,30 +14,86 @@ const MenuItemGroup = Menu.ItemGroup;
 
 class HeaderCustom extends Component {
     state = {
-        user: ''
+        user: '',
+        visible: false,
     };
+
+    componentDidMount() {
+        const QueryString = queryString();
+        console.log('====================================');
+        console.log('queryString: ', QueryString);
+        console.log('====================================');
+
+        const _user = JSON.stringify(localStorage.getItem('user')) || '测试';
+        if (!_user && QueryString.hasOwnProperty('code')) {
+            gitOauthToken(QueryString.code).then(res => {
+                gitOauthInfo(res.access_token).then(info => {
+                    console.log('====================================');
+                    console.log('user:', info);
+                    console.log('====================================');
+                    this.setState({
+                        user: info,
+                    });
+                    localStorage.setItem('user', JSON.stringify(info));
+                });
+            });
+        } else {
+            this.setState({
+                user: _user,
+            });
+        }
+
+        
+    }
 
     menuClick = (e) => {
         if(e.key === 'logout') {
             this.logout();
         }
-    }
+    };
 
     logout = () => {
-        console.log('====================================');
-        console.log(this.props);
-        console.log('====================================');
+        localStorage.removeItem('user');
         this.props.history.push('/login');
-    }
+    };
+
+    popoverHide = () => {
+        this.setState({
+            visible: false,
+        });
+    };
+    
+    handleVisibleChange = (visible) => {
+        this.setState({ visible });
+    };
 
     render() {
+        console.log('====================================');
+        console.log('this.props', this.props);
+        console.log('====================================');
+        const { responsive, path } = this.props;
         return (
             <Header style={{ background: '#fff', padding: 0, height: 65 }} className="custom-theme">
-                <Icon
-                    className="trigger custom-trigger"
-                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                    onClick={this.props.toggle}
-                />
+                {
+                    responsive.data.isMobile ? (
+                        <Popover
+                            content={<SiderCustom path={path} popoverHide={this.popoverHide}/>}
+                            trigger="click"
+                            placement="bottomLeft"
+                            visible={this.state.visible}
+                            onVisibleChange={this.handleVisibleChange}
+                        >
+                            <Icon type="bars" className="trigger custom-trigger" />
+                        </Popover>
+                    ) : (
+                        <Icon
+                            className="trigger custom-trigger"
+                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.props.toggle}
+                        />
+                    )
+                }
+                
                 <Menu
                     mode="horizontal"
                     style={{lineHeight: '64px', float: 'right'}}
@@ -68,4 +128,9 @@ class HeaderCustom extends Component {
     }
 }
 
-export default HeaderCustom;
+const mapStateToProps = (state) => {
+    const { responsive = {data: {}} } = state.httpData;
+    return {responsive};
+}
+
+export default connect(mapStateToProps)(HeaderCustom);

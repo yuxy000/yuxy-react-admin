@@ -17,6 +17,15 @@ export const getPros = () => axios.post('http://api.xitu.io/resources/github', {
     console.log(error);
 });
 
+export const getMaterials = (params) => axios.get(`http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=${params.searchText}&pi=${params.pageNum}&pz=${params.pageSize}`)
+.then(response => {
+    return response.data;
+}).catch(error => {
+    console.log('====================================');
+    console.log('getMaterials error:', error);
+    console.log('====================================');
+});
+
 export const npmDependencies = () => axios.get('./npm.json').then(res => res.data).catch(err => console.log(err));
 
 export const weibo = () => axios.get('./weibo.json').then(res => res.data).catch(err => console.log(err));

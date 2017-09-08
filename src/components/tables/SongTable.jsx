@@ -140,12 +140,12 @@ class SongTable extends Component {
 
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom first="表格" second="素材列表" />
+                <BreadcrumbCustom first="表格" second="歌曲列表" />
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={24}>
+                    <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
-                            <Card title="素材列表" bordered={false}>
+                            <Card title="歌曲列表" bordered={false}>
                                 <div style={{marginBottom: 16}}>
                                     <Input style={{width: '200px', marginRight:10}} ref='nameInput' />
                                     <Button type="primary" icon="search" onClick={this.handleSearchClick} disabled={loading} />

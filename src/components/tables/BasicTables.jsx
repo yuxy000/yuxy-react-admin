@@ -15,7 +15,7 @@ class BasicTables extends React.Component {
                 <BreadcrumbCustom first="表格" second="基础表格" />
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={24}>
+                    <Col className="gutter-row" md={24}>
                         <Card title="基础表格" bordered={false}>
                             <BasicTable />
                         </Card>
@@ -23,7 +23,7 @@ class BasicTables extends React.Component {
                 </Row>
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={24}>
+                    <Col className="gutter-row" md={24}>
                         <Card title="可选表格" bordered={false}>
                             <SelectTable />
                         </Card>
@@ -31,12 +31,12 @@ class BasicTables extends React.Component {
                 </Row>
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <Card title="可控的筛选和排序" bordered={false}>
                             <SortTable />
                         </Card>
                     </Col>
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <Card title="自定义筛选" bordered={false}>
                             <SearchTable />
                         </Card>

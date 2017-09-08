@@ -16,24 +16,26 @@ class Wysiwyg extends Component {
             <div className="gutter-example button-demo">
                 <BreadcrumbCustom first="UI" second="富文本" />
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={24}>
+                    <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card title="富文本编辑器" bordered={false} >
                                 
                             </Card>
                         </div>
                     </Col>
-                    <Col className="gutter-row" span={8}>
+                </Row>
+                <Row gutter={16}>
+                    <Col className="gutter-row" md={8}>
                         <Card title="同步转换HTML" bordered={false}>
                             
                         </Card>
                     </Col>
-                    <Col className="gutter-row" span={8}>
+                    <Col className="gutter-row" md={8}>
                         <Card title="同步转换MarkDown" bordered={false}>
-                           
+                        
                         </Card>
                     </Col>
-                    <Col className="gutter-row" span={8}>
+                    <Col className="gutter-row" md={8}>
                         <Card title="同步转换JSON" bordered={false}>
                             
                         </Card>

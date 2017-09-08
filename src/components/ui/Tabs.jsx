@@ -71,7 +71,7 @@ class TabsCustom extends Component {
                 <BreadcrumbCustom first="UI" second="标签页" />
 
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card title="基本-默认选中第一项" bordered={false}>
                                 <Tabs defaultActiveKey="1" onChange={this.callback}>
@@ -102,7 +102,7 @@ class TabsCustom extends Component {
                         </div>
                     </Col>
 
-                    <Col className="gutter-row" span={12}>
+                    <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card title="禁用某项" bordered={false}>
                                 <Tabs defaultActiveKey="1" onChange={this.callback}>

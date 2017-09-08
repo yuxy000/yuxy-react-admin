@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import img from '../../styles/imgs/404.png';
 
 class NotFound extends React.Component {

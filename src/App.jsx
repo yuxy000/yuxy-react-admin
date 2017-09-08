@@ -12,9 +12,6 @@ import SiderCustom from './containers/SiderCustom';
 import ContentCustom from './containers/ContentCustom';
 const { Footer } = Layout;
 
-
-
-
 class App extends Component {
 
   state = {
@@ -25,6 +22,20 @@ class App extends Component {
     const { receiveData } = this.props;
     const user = JSON.parse(localStorage.getItem('user'));
     user && receiveData(user, 'auth');
+
+    this.getClientWidth();
+    window.onresize = () => {
+      console.log('屏幕变化了');
+      this.getClientWidth();
+    }
+  }
+
+  getClientWidth = () => {  // 获取当前浏览器宽度并设置responsive管理响应式
+    const { receiveData } = this.props;
+    const clientWidth = document.body.clientWidth;
+    console.log(clientWidth);
+
+    receiveData({isMobile: clientWidth <= 992}, 'responsive');
   }
 
   toggle = () => {
@@ -34,28 +45,38 @@ class App extends Component {
   }
 
   render() {
-
-
-    const { auth, history } = this.props;
-
+    console.log('App.props:', this.props);
+    console.log(this.props.responsive);
+    const { auth, history, responsive } = this.props;
     return (
       <Layout className="ant-layout-has-sider">
-        <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed}/>
+        {!responsive.data.isMobile && <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed}/>}
         <Layout>
-          <HeaderCustom toggle={this.toggle} user={auth.data || {}} history={history}/>
+          <HeaderCustom toggle={this.toggle} user={auth.data || {}} history={history} path={this.props.location.pathname}/>
           <ContentCustom {...this.props}/>
           <Footer style={{ textAlign: 'center' }}>
             Yuxy-React-Admin &copy;2017 Created by yuxy
           </Footer>
         </Layout>
+        {
+          responsive.data.isMobile && (
+            <style>
+            {`
+              #root {
+                height: auto;
+              }
+            `}
+            </style>
+          )
+        }
       </Layout>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { auth = {data: {}} } = state.httpData;
-  return { auth };
+  const { auth = {data: {}}, responsive = {data: {}} } = state.httpData;
+  return { auth, responsive };
 }
 
 const mapDistchToProps = dispatch => ({

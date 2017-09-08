@@ -47,12 +47,12 @@ class BasicAnimations extends React.Component {
                 </Row>
                 <Row gutter={14}>
                     {animations.map((v, i) => (
-                        <Col className="gutter-row" span={6} key={i}>
+                        <Col className="gutter-row" md={6} key={i}>
                             <div className="gutter-box">
                                 <Card
                                     className={`${this.state.animated || (this.state.animatedOne === i) ? 'animated' : ''} ${this.state.animated || (this.state.animatedOne === i) ? 'infinite' : ''} ${v}`}
                                     onMouseEnter={() => this.animatedOne(i)}
-                                    onMouseLeave={() => this.animatedOne(i)}
+                                    onMouseLeave={() => this.animatedOneOver()}
                                 >
                                     <div className="pa-m text-center">
                                     <h3>{v}</h3>

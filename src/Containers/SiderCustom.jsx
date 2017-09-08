@@ -15,7 +15,7 @@ class SiderCustom extends Component {
         this.setMenuOpen(this.props);
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+        console.log('sider nextProps', nextProps);
         this.onCollapse(nextProps.collapsed);
         this.setMenuOpen(nextProps)
     }
@@ -38,6 +38,9 @@ class SiderCustom extends Component {
             selectedKey: e.key
         });
         console.log(this.state);
+        // 响应式布局控制小屏幕点击菜单时隐藏菜单操作
+        const { popoverHide } = this.props;
+        popoverHide && popoverHide();
 
     };
     openMenu = v => {
@@ -97,6 +100,7 @@ class SiderCustom extends Component {
                         <Menu.Item key="/app/table/basicTable"><Link to={'/app/table/basicTable'}>基础表格</Link></Menu.Item>
                         <Menu.Item key="/app/table/advancedTable"><Link to={'/app/table/advancedTable'}>高级表格</Link></Menu.Item>
                         <Menu.Item key="/app/table/asynchronousTable"><Link to={'/app/table/asynchronousTable'}>异步表格</Link></Menu.Item>
+                        <Menu.Item key="/app/table/songTable"><Link to={'/app/table/songTable'}>歌曲表格</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="/app/form"
@@ -126,7 +130,15 @@ class SiderCustom extends Component {
                         <Menu.Item key="/app/auth/basic"><Link to={'/app/auth/basic'}>基础演示</Link></Menu.Item>
                         <Menu.Item key="/app/auth/routerEnter"><Link to={'/app/auth/routerEnter'}>路由拦截</Link></Menu.Item>
                     </SubMenu>
-                </Menu>    
+                </Menu>  
+                <style>
+                    {`
+                        #nprogress .spinner {
+                            left: ${this.state.collapsed ? '70px' : '206px'};
+                            right: 0 !important;
+                        }
+                    `}
+                </style>  
             </Sider>
         );
     }

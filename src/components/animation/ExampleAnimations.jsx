@@ -85,7 +85,7 @@ class ExampleAnimations extends Component {
             <div className="gutter-example">
                 <BreadcrumbCustom first="动画" second="动画案例" />
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={24}>
+                    <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <Button className="editable-add-on mb-s" onClick={this.handleAdd}>Add</Button>

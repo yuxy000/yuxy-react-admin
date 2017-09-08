@@ -84,6 +84,9 @@ class BreadcrumbCustom extends React.Component {
                     }
                     ` : ''
                     }
+                    .ant-breadcrumb > span:last-child {
+                        font-weight: bold !important;
+                    }
                 `}</style>
             </span>
         );

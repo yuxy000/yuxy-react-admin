@@ -111,19 +111,19 @@ class Gallery extends Component {
                 <BreadcrumbCustom first="UI" second="画廊(图片来自花瓣网，仅学习，若侵权请联系删除)" />
 
                 <Row gutter={10}>
-                    <Col span={5}>
+                    <Col md={5}>
                         {imgsTag[0]}
                     </Col>
-                    <Col span={5}>
+                    <Col md={5}>
                         {imgsTag[1]}
                     </Col>
-                    <Col span={5}>
+                    <Col md={5}>
                         {imgsTag[2]}
                     </Col>
-                    <Col span={5}>
+                    <Col md={5}>
                         {imgsTag[3]}
                     </Col>
-                    <Col span={4}>
+                    <Col md={4}>
                         {imgsTag[4]}
                     </Col>
                 </Row>

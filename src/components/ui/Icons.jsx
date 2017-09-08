@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Col, Card, Icon } from 'antd';
 
 import BreadcrumbCustom from '../Widgets/BreadcrumbCustom';
@@ -31,7 +31,7 @@ const Icons = () => (
         <BreadcrumbCustom first="UI" second="ICONS"/>
         
         <Row gutter={16}>
-            <Col className="gutter-box" span={24}>
+            <Col className="gutter-box" md={24}>
                 <div className="gutter-box">
                     <Card bordered={false}>
                         <ul className="icons-list">
@@ -41,7 +41,7 @@ const Icons = () => (
                 </div>
             </Col>
 
-            <Col className="gutter-box" span={24}>
+            <Col className="gutter-box" md={24}>
                 <div className="gutter-box">
                     <Card bordered={false}>
                         <ul className="icons-list">
